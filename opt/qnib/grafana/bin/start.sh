@@ -15,6 +15,10 @@ done
 if [ "X${GRAFANA_DATA_SOURCES}" != "X" ];then
     for ds in $(echo ${GRAFANA_DATA_SOURCES} |sed -e 's/,/ /g');do
         if [ -f ${SQL_PATH}/data-sources/${ds}.sql ];then
+            if [ ${ds} == "qcollect" ] && [ "X${QCOLLECT_HOST}" != "X" ];then
+                echo "[INFO] Exchange qcoolect host -> ${QCOLLECT_HOST}" 
+                sed -i '' -e "s#http://influxdb:8086#${QCOLLECT_HOST}#" ${SQL_PATH}/data-sources/${ds}.sql
+            fi
             echo "[INFO] Parse '${SQL_PATH}/data-sources/${ds}.sql'"
             cat ${SQL_PATH}/data-sources/${ds}.sql | sqlite3 /var/lib/grafana/grafana.db
         else
