@@ -32,4 +32,10 @@ RUN /opt/grafana/bin/grafana-cli plugins install vonage-status-panel
 RUN /opt/grafana/bin/grafana-cli plugins install crate-datasource
 ADD opt/qnib/env/grafana/api_key.sh /opt/qnib/env/grafana/
 ADD opt/qnib/grafana/sql/api_keys/viewer.sql /opt/qnib/grafana/sql/api_keys/
-CMD ["/opt/grafana/bin/grafana-server", "--pidfile=/var/run/grafana-server.pid", "--config=/etc/grafana/grafana.ini", "cfg:default.paths.data=/var/lib/grafana", "cfg:default.paths.logs=/var/log/grafana"]
+ADD opt/qnib/entry/20-grafana-sql-restore.sh /opt/qnib/entry/
+CMD ["/opt/grafana/bin/grafana-server", \
+     "-homepath=/opt/grafana/", \
+     "--pidfile=/var/run/grafana-server.pid", \
+     "--config=/etc/grafana/grafana.ini", \
+     "cfg:default.paths.data=/var/lib/grafana", \
+     "cfg:default.paths.logs=/var/log/grafana"]
