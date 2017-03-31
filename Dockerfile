@@ -7,8 +7,7 @@ RUN apk --no-cache add sqlite openssl curl \
  && wget -qO - https://grafanarel.s3.amazonaws.com/builds/grafana-${GRAFANA_VER}.linux-x64.tar.gz |tar xfz - -C /opt/ \
  && mv /opt/grafana-${GRAFANA_VER} /opt/grafana
 ADD etc/grafana/grafana.ini /etc/grafana/grafana.ini
-ADD opt/qnib/grafana/bin/start.sh \
-    opt/qnib/grafana/bin/healthcheck.sh \
+ADD opt/qnib/grafana/bin/healthcheck.sh \
     opt/qnib/grafana/bin/backup_dash.sh \
     /opt/qnib/grafana/bin/
 ## SQL dumps to setup /var/lib/grafana/grafana.db
@@ -33,4 +32,4 @@ RUN /opt/grafana/bin/grafana-cli plugins install vonage-status-panel
 RUN /opt/grafana/bin/grafana-cli plugins install crate-datasource
 ADD opt/qnib/env/grafana/api_key.sh /opt/qnib/env/grafana/
 ADD opt/qnib/grafana/sql/api_keys/viewer.sql /opt/qnib/grafana/sql/api_keys/
-CMD ["/opt/qnib/grafana/bin/start.sh"]
+CMD ["/opt/grafana/bin/grafana-server", "--pidfile=/var/run/grafana-server.pid", "--config=/etc/grafana/grafana.ini", "cfg:default.paths.data=/var/lib/grafana", "cfg:default.paths.logs=/var/log/grafana"]
