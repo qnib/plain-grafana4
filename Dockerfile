@@ -1,6 +1,6 @@
 FROM qnib/alplain-jre8
 
-ARG GRAFANA_VER=4.1.0-1484127817
+ARG GRAFANA_VER=4.2.0
 ENV GRAFANA_DATA_SOURCES=qcollect,elasticsearch
 
 RUN apk --no-cache add sqlite openssl curl \
