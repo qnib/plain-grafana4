@@ -30,4 +30,6 @@ RUN /opt/grafana/bin/grafana-cli plugins install savantly-heatmap-panel
 RUN /opt/grafana/bin/grafana-cli plugins install hawkular-datasource
 RUN /opt/grafana/bin/grafana-cli plugins install vonage-status-panel
 RUN /opt/grafana/bin/grafana-cli plugins install crate-datasource
+ADD opt/qnib/env/grafana/api_key.sh /opt/qnib/env/grafana/
+ADD opt/qnib/grafana/sql/api_keys/viewer.sql /opt/qnib/grafana/sql/api_keys/
 CMD ["/opt/qnib/grafana/bin/start.sh"]
