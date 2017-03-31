@@ -5,7 +5,7 @@
 cd /opt/grafana/
 
 DB_PATH=/var/lib/grafana/grafana.db
-SQL_PATH=${GRAFANA_SQL_PATH-/opt/qnib/grafana/sql}
+SQL_PATH=${GRAFANA_SQL_PATH-/opt/grafana/sql}
 GRAFANA_DS_ARR="$(echo ${GRAFANA_DATA_SOURCES} |sed -e 's/,/ /g')"
 
 mkdir -p /var/lib/grafana

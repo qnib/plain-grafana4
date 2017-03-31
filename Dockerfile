@@ -3,7 +3,7 @@ FROM qnib/alplain-jre8
 ARG GRAFANA_VER=4.2.0
 ENV GRAFANA_DATA_SOURCES=qcollect,elasticsearch
 
-RUN apk --no-cache add sqlite openssl curl \
+RUN apk --no-cache add sqlite openssl curl rsync \
  && wget -qO - https://grafanarel.s3.amazonaws.com/builds/grafana-${GRAFANA_VER}.linux-x64.tar.gz |tar xfz - -C /opt/ \
  && mv /opt/grafana-${GRAFANA_VER} /opt/grafana
 ADD etc/grafana/grafana.ini /etc/grafana/grafana.ini
@@ -32,7 +32,10 @@ RUN /opt/grafana/bin/grafana-cli plugins install vonage-status-panel
 RUN /opt/grafana/bin/grafana-cli plugins install crate-datasource
 ADD opt/qnib/env/grafana/api_key.sh /opt/qnib/env/grafana/
 ADD opt/qnib/grafana/sql/api_keys/viewer.sql /opt/qnib/grafana/sql/api_keys/
-ADD opt/qnib/entry/20-grafana-sql-restore.sh /opt/qnib/entry/
+ADD opt/qnib/entry/20-grafana-sql-restore.sh \
+    opt/qnib/entry/15-grafana-sql-bootstrap.sh \
+    /opt/qnib/entry/
+VOLUME ["/opt/grafana/sql/"]
 CMD ["/opt/grafana/bin/grafana-server", \
      "-homepath=/opt/grafana/", \
      "--pidfile=/var/run/grafana-server.pid", \
