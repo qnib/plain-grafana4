@@ -18,7 +18,6 @@ for db in $(ls ${SQL_PATH} |sort);do
 done
 ## sql within directories sources
 for DPATH in $(find ${SQL_PATH} -type d -mindepth 1);do
-    echo ${DPATH}
     DNAME=$(basename ${DPATH})
     for DSPATH in $(find ${DPATH} -type f);do
         DSNAME=$(basename ${DSPATH} |awk -F\. '{print $1}')
