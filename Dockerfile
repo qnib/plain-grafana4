@@ -25,6 +25,7 @@ ADD opt/qnib/grafana/sql/data-sources/prometheus.sql \
 ADD opt/qnib/grafana/sql/dashboards/docker-stats.sql \
     opt/qnib/grafana/sql/dashboards/docker-engine.sql \
     opt/qnib/grafana/sql/dashboards/prometheus.sql \
+    opt/qnib/grafana/sql/dashboards/qcollect-ng.sql \
     /opt/qnib/grafana/sql/dashboards/
 RUN /opt/grafana/bin/grafana-cli plugins install jdbranham-diagram-panel
 RUN /opt/grafana/bin/grafana-cli plugins install savantly-heatmap-panel
