@@ -1,7 +1,7 @@
 FROM qnib/alplain-jre8
 
 ARG GRAFANA_VER=4.2.0
-ENV GRAFANA_DATA_SOURCES=qcollect,elasticsearch \
+ENV GRAFANA_DATA_SOURCES=qcollect,elasticsearch,influxdb-opentsdb \
     GF_PLUGIN_DIR=/opt/grafana/plugins/
 
 RUN apk --no-cache add sqlite openssl curl rsync \
