@@ -32,10 +32,13 @@ RUN /opt/grafana/bin/grafana-cli plugins install savantly-heatmap-panel
 RUN /opt/grafana/bin/grafana-cli plugins install hawkular-datasource
 RUN /opt/grafana/bin/grafana-cli plugins install vonage-status-panel
 RUN /opt/grafana/bin/grafana-cli plugins install crate-datasource
+RUN /opt/grafana/bin/grafana-cli plugins install opennms-datasource
+RUN /opt/grafana/bin/grafana-cli plugins install grafana-kairosdb-datasource
 ADD opt/qnib/env/grafana/api_key.sh /opt/qnib/env/grafana/
 ADD opt/qnib/grafana/sql/api_keys/viewer.sql /opt/qnib/grafana/sql/api_keys/
 ADD opt/qnib/entry/20-grafana-sql-restore.sh \
     opt/qnib/entry/15-grafana-sql-bootstrap.sh \
+    opt/qnib/entry/10-grafana-plugins-dir.sh \
     /opt/qnib/entry/
 VOLUME ["/opt/grafana/sql/"]
 CMD ["/opt/grafana/bin/grafana-server", \
