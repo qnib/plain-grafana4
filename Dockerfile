@@ -18,15 +18,9 @@ ADD opt/qnib/grafana/sql/00-migration_log.sql \
     opt/qnib/grafana/sql/30-data-source.sql \
     opt/qnib/grafana/sql/40-backend.sql \
     /opt/qnib/grafana/sql/
-ADD opt/qnib/grafana/sql/data-sources/prometheus.sql \
-    opt/qnib/grafana/sql/data-sources/elasticsearch.sql \
-    opt/qnib/grafana/sql/data-sources/qcollect.sql \
-    opt/qnib/grafana/sql/data-sources/influxdb-opentsdb.sql \
+ADD opt/qnib/grafana/sql/data-sources/*.sql \
     /opt/qnib/grafana/sql/data-sources/
-ADD opt/qnib/grafana/sql/dashboards/docker-stats.sql \
-    opt/qnib/grafana/sql/dashboards/docker-engine.sql \
-    opt/qnib/grafana/sql/dashboards/prometheus.sql \
-    opt/qnib/grafana/sql/dashboards/qcollect-ng.sql \
+ADD opt/qnib/grafana/sql/dashboards/*.sql \
     /opt/qnib/grafana/sql/dashboards/
 RUN /opt/grafana/bin/grafana-cli plugins install jdbranham-diagram-panel
 RUN /opt/grafana/bin/grafana-cli plugins install savantly-heatmap-panel
