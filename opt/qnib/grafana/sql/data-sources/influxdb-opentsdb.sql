@@ -1,1 +1,1 @@
-INSERT INTO "data_source" VALUES(4,1,0,'influxdb','influxdb-opentsdb','proxy','http://qcollect-ng_backend:8086','root','root','opentsdb',0,'','',0,X'7B7D','2017-04-04 17:27:43','2017-04-04 17:27:46',0,'{}');
+INSERT INTO "data_source" VALUES(4,1,0,'influxdb','influxdb-opentsdb','proxy','http://qcollect-ng_backend:8086','root','root','opentsdb',0,'','',0,X'7B7D','2017-04-04 17:27:43','2017-04-04 17:27:46',0);
