@@ -4,7 +4,7 @@ ARG GRAFANA_VER=4.2.0
 ENV GRAFANA_DATA_SOURCES=qcollect,elasticsearch,influxdb-opentsdb \
     GF_PLUGIN_DIR=/opt/grafana/plugins/
 
-RUN apk --no-cache add sqlite openssl curl rsync \
+RUN apk --no-cache add sqlite openssl curl rsync nmap \
  && wget -qO - https://grafanarel.s3.amazonaws.com/builds/grafana-${GRAFANA_VER}.linux-x64.tar.gz |tar xfz - -C /opt/ \
  && mv /opt/grafana-${GRAFANA_VER} /opt/grafana
 ADD etc/grafana/grafana.ini /etc/grafana/grafana.ini
@@ -36,6 +36,8 @@ ADD opt/qnib/entry/20-grafana-sql-restore.sh \
     opt/qnib/entry/10-grafana-plugins-dir.sh \
     /opt/qnib/entry/
 VOLUME ["/opt/grafana/sql/"]
+HEALTHCHECK --interval=5s --retries=15 --timeout=1s \
+  CMD /opt/qnib/grafana/bin/healthcheck.sh
 CMD ["/opt/grafana/bin/grafana-server", \
      "-homepath=/opt/grafana/", \
      "--pidfile=/var/run/grafana-server.pid", \
