@@ -36,6 +36,8 @@ ADD opt/qnib/entry/20-grafana-sql-restore.sh \
     opt/qnib/entry/10-grafana-plugins-dir.sh \
     /opt/qnib/entry/
 VOLUME ["/opt/grafana/sql/"]
+HEALTHCHECK --interval=5s --retries=15 --timeout=1s \
+  CMD /opt/qnib/grafana/bin/healthcheck.sh
 CMD ["/opt/grafana/bin/grafana-server", \
      "-homepath=/opt/grafana/", \
      "--pidfile=/var/run/grafana-server.pid", \
