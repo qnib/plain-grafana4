@@ -20,7 +20,7 @@ done
 for DPATH in $(find ${SQL_PATH} -type d -mindepth 1);do
     DNAME=$(basename ${DPATH})
     for DSPATH in $(find ${DPATH} -type f);do
-        DSNAME=$(basename ${DSPATH} |awk -F\. '{print $1}')
+        DSNAME=$(basename ${DSPATH} |awk -F\. '{print $1}' |sed -e 's/^[0-9\-]*//')
         if [[ "${DNAME}" == "data-sources" ]] && [[ " ${GRAFANA_DS_ARR[@]} " =~ " ${DSNAME} " ]] && [[ ${DSNAME} == "qcollect" ]] && [ "X${QCOLLECT_HOST}" != "X" ];then
             echo "[DEBUG] Exchange qcollect host -> ${QCOLLECT_HOST}"
             sed -i'' -e "s#http://influxdb:8086#${QCOLLECT_HOST}#" ${DSPATH}
@@ -34,4 +34,3 @@ for DPATH in $(find ${SQL_PATH} -type d -mindepth 1);do
         cat ${DSPATH} | sqlite3 ${DB_PATH}
     done
 done
-
