@@ -1,8 +1,10 @@
 FROM qnib/alplain-jre8
 
 ARG GRAFANA_VER=4.2.0
-ENV GRAFANA_DATA_SOURCES=qcollect,elasticsearch,influxdb-opentsdb \
-    GF_PLUGIN_DIR=/opt/grafana/plugins/
+ENV GRAFANA_DATA_SOURCES=qcollect,elasticsearch,influxdb-opentsdb,influxdb \
+    GF_PLUGIN_DIR=/opt/grafana/plugins/ \
+    INFLUXDB_HOST=none \
+    INFLUXDB_DB=none
 
 RUN apk --no-cache add sqlite openssl curl rsync nmap \
  && wget -qO - https://grafanarel.s3.amazonaws.com/builds/grafana-${GRAFANA_VER}.linux-x64.tar.gz |tar xfz - -C /opt/ \
