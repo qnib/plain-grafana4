@@ -4,7 +4,8 @@ ARG GRAFANA_VER=4.3.1
 ENV GRAFANA_DATA_SOURCES=qcollect,elasticsearch,influxdb-opentsdb,influxdb \
     GF_PLUGIN_DIR=/opt/grafana/plugins/ \
     INFLUXDB_HOST=none \
-    INFLUXDB_DB=none
+    INFLUXDB_DB=none \
+    ENTRYPOINTS_DIR=/opt/qnib/entry
 
 RUN apk --no-cache add sqlite openssl curl rsync nmap \
  && wget -qO - https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-${GRAFANA_VER}.linux-x64.tar.gz |tar xfz - -C /opt/ \
