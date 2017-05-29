@@ -1,13 +1,13 @@
-FROM qnib/alplain-jre8
+FROM qnib/alplain-openjre8-glibc
 
-ARG GRAFANA_VER=4.2.0
+ARG GRAFANA_VER=4.3.1
 ENV GRAFANA_DATA_SOURCES=qcollect,elasticsearch,influxdb-opentsdb,influxdb \
     GF_PLUGIN_DIR=/opt/grafana/plugins/ \
     INFLUXDB_HOST=none \
     INFLUXDB_DB=none
 
 RUN apk --no-cache add sqlite openssl curl rsync nmap \
- && wget -qO - https://grafanarel.s3.amazonaws.com/builds/grafana-${GRAFANA_VER}.linux-x64.tar.gz |tar xfz - -C /opt/ \
+ && wget -qO - https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-${GRAFANA_VER}.linux-x64.tar.gz |tar xfz - -C /opt/ \
  && mv /opt/grafana-${GRAFANA_VER} /opt/grafana
 ADD etc/grafana/grafana.ini /etc/grafana/grafana.ini
 ADD opt/qnib/grafana/bin/healthcheck.sh \
