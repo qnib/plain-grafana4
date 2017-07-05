@@ -1,6 +1,6 @@
 FROM qnib/alplain-openjre8-glibc
 
-ARG GRAFANA_VER=4.3.2
+ARG GRAFANA_VER=4.4.1
 ENV GRAFANA_DATA_SOURCES=qcollect,elasticsearch,influxdb-opentsdb,influxdb \
     GF_PLUGIN_DIR=/opt/grafana/plugins/ \
     INFLUXDB_HOST=none \
@@ -39,6 +39,7 @@ RUN /opt/grafana/bin/grafana-cli plugins install briangann-gauge-panel
 RUN /opt/grafana/bin/grafana-cli plugins install digiapulssi-organisations-panel
 RUN /opt/grafana/bin/grafana-cli plugins install natel-discrete-panel
 RUN /opt/grafana/bin/grafana-cli plugins install grafana-simple-json-datasource
+RUN /opt/grafana/bin/grafana-cli plugins install digiapulssi-breadcrumb-panel
 ADD opt/qnib/env/grafana/api_key.sh /opt/qnib/env/grafana/
 ADD opt/qnib/grafana/sql/api_keys/viewer.sql /opt/qnib/grafana/sql/api_keys/
 ADD opt/qnib/entry/20-grafana-sql-restore.sh \
