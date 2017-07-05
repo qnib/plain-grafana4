@@ -25,21 +25,21 @@ ADD opt/qnib/grafana/sql/data-sources/*.sql \
     /opt/qnib/grafana/sql/data-sources/
 ADD opt/qnib/grafana/sql/dashboards/*.sql \
     /opt/qnib/grafana/sql/dashboards/
-RUN /opt/grafana/bin/grafana-cli plugins install jdbranham-diagram-panel
-RUN /opt/grafana/bin/grafana-cli plugins install savantly-heatmap-panel
-RUN /opt/grafana/bin/grafana-cli plugins install hawkular-datasource
-RUN /opt/grafana/bin/grafana-cli plugins install vonage-status-panel
-RUN /opt/grafana/bin/grafana-cli plugins install crate-datasource
-RUN /opt/grafana/bin/grafana-cli plugins install opennms-datasource
-RUN /opt/grafana/bin/grafana-cli plugins install grafana-kairosdb-datasource
-RUN /opt/grafana/bin/grafana-cli plugins install grafana-worldmap-panel
 RUN /opt/grafana/bin/grafana-cli plugins install bosun-app
-RUN /opt/grafana/bin/grafana-cli plugins install neocat-cal-heatmap-panel
 RUN /opt/grafana/bin/grafana-cli plugins install briangann-gauge-panel
-RUN /opt/grafana/bin/grafana-cli plugins install digiapulssi-organisations-panel
-RUN /opt/grafana/bin/grafana-cli plugins install natel-discrete-panel
-RUN /opt/grafana/bin/grafana-cli plugins install grafana-simple-json-datasource
+RUN /opt/grafana/bin/grafana-cli plugins install crate-datasource
 RUN /opt/grafana/bin/grafana-cli plugins install digiapulssi-breadcrumb-panel
+RUN /opt/grafana/bin/grafana-cli plugins install digiapulssi-organisations-panel
+RUN /opt/grafana/bin/grafana-cli plugins install grafana-kairosdb-datasource
+RUN /opt/grafana/bin/grafana-cli plugins install grafana-simple-json-datasource
+RUN /opt/grafana/bin/grafana-cli plugins install grafana-worldmap-panel
+RUN /opt/grafana/bin/grafana-cli plugins install hawkular-datasource
+RUN /opt/grafana/bin/grafana-cli plugins install jdbranham-diagram-panel
+RUN /opt/grafana/bin/grafana-cli plugins install natel-discrete-panel
+RUN /opt/grafana/bin/grafana-cli plugins install neocat-cal-heatmap-panel
+RUN /opt/grafana/bin/grafana-cli plugins install opennms-datasource
+RUN /opt/grafana/bin/grafana-cli plugins install savantly-heatmap-panel
+RUN /opt/grafana/bin/grafana-cli plugins install vonage-status-panel
 ADD opt/qnib/env/grafana/api_key.sh /opt/qnib/env/grafana/
 ADD opt/qnib/grafana/sql/api_keys/viewer.sql /opt/qnib/grafana/sql/api_keys/
 ADD opt/qnib/entry/20-grafana-sql-restore.sh \
