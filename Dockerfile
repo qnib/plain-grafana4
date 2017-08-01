@@ -1,6 +1,6 @@
 FROM qnib/alplain-openjre8-glibc
 
-ARG GRAFANA_VER=4.4.1
+ARG GRAFANA_VER=4.4.2
 ENV GRAFANA_DATA_SOURCES=qcollect,elasticsearch,influxdb-opentsdb,influxdb \
     GF_PLUGIN_DIR=/opt/grafana/plugins/ \
     INFLUXDB_HOST=none \
