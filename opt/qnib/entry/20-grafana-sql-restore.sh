@@ -29,6 +29,11 @@ for DPATH in $(find ${SQL_PATH} -type d -mindepth 1);do
             sed -i'' -e "s#INFLUXDB_HOST#${INFLUXDB_HOST}#g" ${DSPATH}
             echo "[DEBUG] Exchange influxdb db -> ${INFLUXDB_DB}"
             sed -i'' -e "s#INFLUXDB_DB#${INFLUXDB_DB}#g" ${DSPATH}
+        elif [[ "${DNAME}" == "data-sources" ]] && [[ " ${GRAFANA_DS_ARR[@]} " =~ " ${DSNAME} " ]] && [[ ${DSNAME} == "prometheus" ]] && [ "X${PROMETHEUS_HOST}" != "Xnone" ] && [ "X${PROMETHEUS_PORT}" != "Xnone" ];then
+            echo "[DEBUG] Exchange prometheus host -> ${PROMETHEUS_HOST}"
+            sed -i'' -e "s#PROMETHEUS_HOST#${PROMETHEUS_HOST}#g" ${DSPATH}
+            echo "[DEBUG] Exchange prometheus port -> ${PROMETHEUS_PORT}"
+            sed -i'' -e "s#PROMETHEUS_PORT#${PROMETHEUS_PORT}#g" ${DSPATH}
         fi
         echo "[INFO] Parse '${DSPATH}'"
         cat ${DSPATH} | sqlite3 ${DB_PATH}
