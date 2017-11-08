@@ -1,5 +1,6 @@
 ARG DOCKER_REGISTRY=docker.io
-FROM ${DOCKER_REGISTRY}/qnib/alplain-openjre8-glibc
+ARG FROM_IMG=qnib/alplain-openjre8-glibc
+FROM ${DOCKER_REGISTRY}/${FROM_IMG}
 
 ARG GRAFANA_VER=4.6.1
 LABEL grafana.version=${GRAFANA_VER}
