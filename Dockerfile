@@ -2,7 +2,7 @@ ARG DOCKER_REGISTRY=docker.io
 ARG FROM_IMG=qnib/alplain-openjre8-glibc
 FROM ${DOCKER_REGISTRY}/${FROM_IMG}
 
-ARG GRAFANA_VER=4.6.1
+ARG GRAFANA_VER=4.6.2
 LABEL grafana.version=${GRAFANA_VER}
 ENV GRAFANA_DATA_SOURCES=prometheus,influxdb \
     GF_PLUGIN_DIR=/opt/grafana/plugins/ \
